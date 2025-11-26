@@ -13,6 +13,27 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
+
+            $table->date('date');
+            $table->date('last_change_date');
+            $table->string('supplier_article');
+            $table->string('tech_size');
+            $table->unsignedBigInteger('barcode');
+            $table->unsignedBigInteger('quantity');
+            $table->boolean('is_supply');
+            $table->boolean('is_realization');
+            $table->integer('quantity_full');
+            $table->string('warehouse_name');
+            $table->integer('in_way_to_client');
+            $table->integer('in_way_from_client');
+            $table->unsignedBigInteger('nm_id');
+            $table->string('subject', 100);
+            $table->string('category', 100);
+            $table->string('brand', 100);
+            $table->unsignedBigInteger('sc_code');
+            $table->integer('price');
+            $table->integer('discount');
+
             $table->timestamps();
         });
     }
