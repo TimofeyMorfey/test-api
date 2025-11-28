@@ -35,4 +35,9 @@ class Sale extends Model
             "brand",
             "is_storno",
     ];
+
+    protected $casts = [
+        'date' => 'datetime',
+        'last_change_date' => 'datetime'
+    ];
 }

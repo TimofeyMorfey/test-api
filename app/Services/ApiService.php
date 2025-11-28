@@ -35,11 +35,15 @@ class ApiService
             ->get($url, [
                 'dateFrom' => $dateFrom,
                 'dateTo' => $dateTo,
+                'page' => 1,
                 'key' => $this->apikey,
                 'limit' => 100,
-                'page' => 1,
-
             ]);
+
+            Log::info("message", ['response' => $response]);
+            
+            $fullUrl = $response->effectiveUri();
+            Log::info("message", ['fullUrl' => $fullUrl]);
 
             if ($response->successful()) {
                 return $response->json();
