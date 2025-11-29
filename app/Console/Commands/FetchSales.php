@@ -94,8 +94,9 @@ class FetchSales extends Command
                     "brand" =>$saleData['brand'] ?? '',
                     "is_storno" =>$saleData['is_storno'] ?? false,
                 ];
-                $this->info($preparedData['g_number']);
+                $this->info($preparedData['sale_id']);
                 Sale::updateOrCreate(['sale_id' => $preparedData['sale_id']], $preparedData);
+                Log::info('Получение заказов прошло успешно');
 
             } catch (\Exception $e) 
             {
