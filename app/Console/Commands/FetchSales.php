@@ -51,7 +51,7 @@ class FetchSales extends Command
 
         $salesData = $this->apiService->getSales($dateFrom, $dateTo);
 
-        Log::info('Sales data received from API', ['salesData' => $salesData]);
+        // Log::info('Sales data received from API', ['salesData' => $salesData]);
 
 
         if (empty($salesData)) 
@@ -59,7 +59,7 @@ class FetchSales extends Command
             $this->error('Ups...');
             return 1;
         }
-        foreach ($salesData as $saleData) 
+        foreach ($salesData['data'] as $saleData) 
         {
 
             try 

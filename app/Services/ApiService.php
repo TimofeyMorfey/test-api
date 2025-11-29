@@ -16,7 +16,7 @@ class ApiService
 
     public function __construct()
     {
-        $this->baseUrl = 'http://' . env('API_HOST', '109.73.206.144:6969');
+        $this->baseUrl = env('API_HOST', '109.73.206.144:6969');
         $this->apikey = env('API_KEY', 'E6kUTYrYwZq2tN4QEtyzsbEBk3ie');
     }
 
@@ -30,9 +30,7 @@ class ApiService
         try {
             $url = $this->baseUrl . '/api/sales';
 
-            $response = Http::timeout(30)
-            ->retry(3, 100)
-            ->get($url, [
+            $response = Http::get($url, [
                 'dateFrom' => $dateFrom,
                 'dateTo' => $dateTo,
                 'page' => 1,
@@ -40,10 +38,10 @@ class ApiService
                 'limit' => 100,
             ]);
 
-            Log::info("message", ['response' => $response]);
+            // Log::info("message", ['response' => $response]);
             
             $fullUrl = $response->effectiveUri();
-            Log::info("message", ['fullUrl' => $fullUrl]);
+            // Log::info("message", ['fullUrl' => $fullUrl]);
 
             if ($response->successful()) {
                 return $response->json();
