@@ -48,7 +48,7 @@ class FetchOders extends Command
 
         Log::info('DateTo: ', ['dateTo' => $dateTo]);
 
-        $ordersData = $this->apiService->getSales($dateFrom, $dateTo);
+        $ordersData = $this->apiService->getOrders($dateFrom, $dateTo);
 
         Log::info('ordersData: ', ['ordersData' => $ordersData]);
 

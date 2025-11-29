@@ -59,4 +59,77 @@ class ApiService
         }
     }
 
+    /**
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return array|null
+     */
+    public function getOrders(string $dateFrom, string $dateTo): ?array
+    {
+        try {
+            $url = $this->baseUrl . '/api/orders';
+
+            $response = Http::timeout(100)
+                ->retry(3)
+                ->get($url, [
+                    'dateFrom' => $dateFrom,
+                    'dateTo' => $dateTo,
+                    'page' => 1,
+                    'key' => $this->apikey,
+                    'limit' => 100,
+                ]);
+
+            // Log::info("message", ['response' => $response]);
+
+            $fullUrl = $response->effectiveUri();
+            Log::info("message", ['fullUrl' => $fullUrl]);
+
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                Log::error('API ORDERS Error: ' . $response->status(), [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+                return null;
+            }
+        } catch (\Exception $e) {
+            Log::error('API ORDERS Exeption: ' . $e->getMessage());
+        }
+    }
+
+    public function getIncomes(string $dateFrom, string $dateTo): ?array
+    {
+        try {
+            $url = $this->baseUrl . '/api/incomes';
+
+            $response = Http::timeout(100)
+                ->retry(3)
+                ->get($url, [
+                    'dateFrom' => $dateFrom,
+                    'dateTo' => $dateTo,
+                    'page' => 1,
+                    'key' => $this->apikey,
+                    'limit' => 100,
+                ]);
+
+            // Log::info("message", ['response' => $response]);
+
+            $fullUrl = $response->effectiveUri();
+            Log::info("message", ['fullUrl' => $fullUrl]);
+
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                Log::error('API INCOMES Error: ' . $response->status(), [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+                return null;
+            }
+        } catch (\Exception $e) {
+            Log::error('API INCOMES Exeption: ' . $e->getMessage());
+        }
+    }
+
 }
