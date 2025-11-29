@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->id(); // Создает поле id
+            $table->id();
             $table->string('g_number');
             $table->date('date');
             $table->date('last_change_date');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->bigInteger('barcode');
             $table->decimal('total_price', 15, 2);
             $table->integer('discount_percent');
-            $table->boolean('is_supply'); // или $table->tinyInteger('is_supply') если хотите хранить 0/1
+            $table->boolean('is_supply'); 
             $table->boolean('is_realization');
             $table->string('promo_code_discount')->nullable();
             $table->string('warehouse_name');
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->decimal('for_pay', 15, 2);
             $table->decimal('finished_price', 15, 2);
             $table->decimal('price_with_disc', 15, 2);
-            $table->unsignedBigInteger('nm_id');
+            $table->bigInteger('nm_id');
             $table->string('subject');
             $table->string('category');
             $table->string('brand');

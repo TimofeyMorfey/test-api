@@ -30,7 +30,9 @@ class ApiService
         try {
             $url = $this->baseUrl . '/api/sales';
 
-            $response = Http::get($url, [
+            $response = Http::timeout(100)
+            ->retry(3)
+            ->get($url, [
                 'dateFrom' => $dateFrom,
                 'dateTo' => $dateTo,
                 'page' => 1,
