@@ -63,17 +63,17 @@ class FetchIncomes extends Command
                 $preparedData =
                     [
                         "income_id" => $incomeData['income_id'] ?? 0,
-                        "number" => $incomeData['number'] ?? null,
-                        "date" => $saleData['date'] ?? '2025-01-01',
-                        "last_change_date" => $saleData['last_change_date'] ?? '2025-01-01',
-                        "supplier_article" => $saleData['supplier_article'] ?? '',
-                        "tech_size" => $saleData['tech_size'] ?? '',
-                        "barcode" => $saleData['barcode'] ?? 0,
+                        "number" => $incomeData['number'] ?? '',
+                        "date" => $incomeData['date'] ?? null,
+                        "last_change_date" => $incomeData['last_change_date'] ?? null,
+                        "supplier_article" => $incomeData['supplier_article'] ?? '',
+                        "tech_size" => $incomeData['tech_size'] ?? '',
+                        "barcode" => $incomeData['barcode'] ?? '',
                         "quantity" => $incomeData['quantity'] ?? 0,
-                        "total_price" => $saleData['total_price'] ?? 0,
-                        "date_close" => $incomeData['date_close'] ?? '0000-00-00',
-                        "warehouse_name" => $saleData['warehouse_name'] ?? '',
-                        "nm_id" => $saleData['nm_id'] ?? 0,
+                        "total_price" => $incomeData['total_price'] ?? 0,
+                        "date_close" => $incomeData['date_close'] ?? null,
+                        "warehouse_name" => $incomeData['warehouse_name'] ?? '',
+                        "nm_id" => $incomeData['nm_id'] ?? '',
                     ];
                 $this->info($preparedData['income_id']);
                 Income::updateOrCreate(['income_id' => $preparedData['income_id']], $preparedData);

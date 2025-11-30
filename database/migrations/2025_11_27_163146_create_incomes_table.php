@@ -15,17 +15,17 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('income_id');
-            $table->integer('number');
+            $table->string('number');
             $table->date('date');
             $table->date('last_change_date');
             $table->string('supplier_article');
             $table->string('tech_size');
-            $table->unsignedBigInteger('barcode');
+            $table->string('barcode');
             $table->integer('quantity');
             $table->integer('total_price');
             $table->date('date_close');
             $table->string('warehouse_name');
-            $table->unsignedBigInteger('nm_id');
+            $table->string('nm_id');
             
             $table->timestamps();
         });
