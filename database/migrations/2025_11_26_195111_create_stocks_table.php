@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->date('date');
-            $table->date('last_change_date');
+            $table->string('last_change_date');
             $table->string('supplier_article');
             $table->string('tech_size');
-            $table->unsignedBigInteger('barcode');
+            $table->string('barcode');
             $table->unsignedBigInteger('quantity');
             $table->boolean('is_supply');
             $table->boolean('is_realization');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('warehouse_name');
             $table->integer('in_way_to_client');
             $table->integer('in_way_from_client');
-            $table->unsignedBigInteger('nm_id');
+            $table->bigInteger('nm_id');
             $table->string('subject', 100);
             $table->string('category', 100);
             $table->string('brand', 100);

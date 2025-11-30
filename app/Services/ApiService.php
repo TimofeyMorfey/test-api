@@ -98,6 +98,11 @@ class ApiService
         }
     }
 
+    /**
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return array|null
+     */
     public function getIncomes(string $dateFrom, string $dateTo): ?array
     {
         try {
@@ -132,4 +137,41 @@ class ApiService
         }
     }
 
+    /**
+     * @param string $dateFrom
+     * @return array|null
+     */
+    public function getStocks(string $dateFrom): ?array
+    {
+        try {
+            $url = $this->baseUrl . '/api/stocks';
+
+            $response = Http::timeout(100)
+                ->retry(3)
+                ->get($url, [
+                    'dateFrom' => $dateFrom,
+                    'page' => 1,
+                    'key' => $this->apikey,
+                    'limit' => 100,
+                ]);
+
+            // Log::info("message", ['response' => $response]);
+
+            $fullUrl = $response->effectiveUri();
+            Log::info("message", ['fullUrl' => $fullUrl]);
+
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                Log::error('API STOCKS Error: ' . $response->status(), [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+                return null;
+            }
+        } catch (\Exception $e) {
+            Log::error('API STOCKS Exeption: ' . $e->getMessage());
+            return null;
+        }
+    }
 }
