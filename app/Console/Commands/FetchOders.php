@@ -64,7 +64,7 @@ class FetchOders extends Command
             {
                 $preparedData = 
                 [
-                    'g_number' => $orderData['g_number'] ?? '',
+                    'g_number' => $orderData['g_number'] ?? 0,
                     'date' => $orderData['date'] ?? '',
                     'last_change_date' => $orderData['last_change_date'] ?? '',
                     'supplier_article' => $orderData['supplier_article'] ?? '',
@@ -74,14 +74,14 @@ class FetchOders extends Command
                     'discount_percent' => $orderData['discount_percent'] ?? 0,
                     'warehouse_name' => $orderData['warehouse_name'] ?? '',
                     'oblast' => $orderData['oblast'] ?? '',
-                    'income_id' => $orderData['income_id'] ?? 0,
+                    'income_id' => $orderData['income_id'] ?? null,
                     'odid' => $orderData['odid'] ?? null,
                     'nm_id' => $orderData['nm_id'] ?? 0,
                     'subject' => $orderData['subject'] ?? '',
                     'category' => $orderData['category'] ?? '',
                     'brand' => $orderData['brand'] ?? '',
                     'is_cancel' => $orderData['is_cancel'] ?? false,
-                    'cancel_dt' => $orderData['cancel_dt'] ?? '',
+                    'cancel_dt' => $orderData['cancel_dt'] ?? null,
                 ];
                 $this->info($preparedData['nm_id']);
                 Order::updateOrCreate(['nm_id' => $preparedData['nm_id']], $preparedData);

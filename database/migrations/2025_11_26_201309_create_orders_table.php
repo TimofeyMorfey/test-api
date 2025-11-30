@@ -14,22 +14,22 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('g_number');
+            $table->string('g_number');
             $table->date('date');
             $table->date('last_change_date');
             $table->string('supplier_article');
             $table->string('tech_size');
-            $table->unsignedBigInteger('barcode');
+            $table->bigInteger('barcode');
             $table->decimal('total_price', 10, 1);
             $table->integer('discount_percent');
             $table->string('warehouse_name');
             $table->string('oblast');
-            $table->unsignedBigInteger('income_id');
+            $table->bigInteger('income_id');
             $table->integer('odid');
-            $table->unsignedBigInteger('nm_id');
+            $table->bigInteger('nm_id');
             $table->string('subject');
             $table->string('category');
-            $table->string('brand"');
+            $table->string('brand');
             $table->boolean('is_cancel');
             $table->dateTime('cancel_dt')->nullable();
 
